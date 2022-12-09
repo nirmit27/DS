@@ -1,12 +1,15 @@
 #include <stdio.h>
 // #include <conio.h>
 #include <stdlib.h>
+
 typedef struct node
 {
     int data;
     struct node *next;
 } cll;
+
 cll *start = NULL;
+
 cll *getnode()
 {
     cll *node = (cll *)malloc(sizeof(cll));
@@ -15,6 +18,7 @@ cll *getnode()
     node->next = NULL;
     return node;
 }
+
 cll *create_cll(cll *start)
 {
     int num;
@@ -41,6 +45,7 @@ cll *create_cll(cll *start)
     }
     return start;
 }
+
 cll *display(cll *start)
 {
     cll *temp = start;
@@ -52,6 +57,7 @@ cll *display(cll *start)
     printf(" %d => NULL", temp->data);
     return start;
 }
+
 cll *insert_beg(cll *start)
 {
     cll *temp = start;
@@ -63,6 +69,7 @@ cll *insert_beg(cll *start)
     start = new_node;
     return start;
 }
+
 cll *insert_end(cll *start)
 {
     cll *temp = start;
@@ -73,6 +80,7 @@ cll *insert_end(cll *start)
     new_node->next = start;
     return start;
 }
+
 cll *delete_beg(cll *start)
 {
     cll *temp = start;
@@ -83,6 +91,7 @@ cll *delete_beg(cll *start)
     start = temp->next;
     return start;
 }
+
 cll *delete_end(cll *start)
 {
     cll *temp, *prev;
@@ -96,6 +105,7 @@ cll *delete_end(cll *start)
     free(temp);
     return start;
 }
+
 cll *delete_after(cll *start)
 {
     int val;
@@ -114,6 +124,7 @@ cll *delete_after(cll *start)
     free(temp);
     return start;
 }
+
 cll *delete_list(cll *start)
 {
     cll *temp = start;
@@ -122,6 +133,7 @@ cll *delete_list(cll *start)
     free(start);
     return start;
 }
+
 int main(int argc, char const *argv[])
 {
     int option;
