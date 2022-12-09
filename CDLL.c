@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
+// #include <conio.h>
 #include <stdlib.h>
 
 typedef struct circ_doubly_ll
@@ -16,12 +16,126 @@ cdll *getnode()
     cdll *node = (cdll *)malloc(sizeof(cdll));
     printf("\nEnter the data to be inserted : ");
     scanf("%d", &(node->data));
-    node->next = node->prev = NULL;
+    node->prev = NULL;
+    node->next = NULL;
     return node;
 }
 
-cdll *create(cdll *start){
-    
+cdll *create(cdll *start)
+{
+    int num;
+    cdll *new_node, *temp;
+    printf("\nEnter 0 to stop.");
+    while (num)
+    {
+        new_node = getnode();
+        if (start == NULL)
+        {
+            new_node->next = new_node;
+            start = new_node;
+        }
+        else
+        {
+            temp = start;
+            while (temp->next != start)
+                temp = temp->next;
+            new_node->prev = temp;
+            temp->next = new_node;
+            new_node->next = start;
+            start->prev = new_node;
+        }
+        printf("More nodes? (0/1) : ");
+        scanf("%d", &num);
+    }
+    return start;
+}
+
+cdll *display(cdll *start)
+{
+    cdll *temp = start;
+    while (temp->next != start)
+    {
+        printf(" %d =>", temp->data);
+        temp = temp->next;
+    }
+    printf(" %d =>", temp->data);
+    printf(" NULL");
+    return start;
+}
+
+cdll *insert_beg(cdll *start)
+{
+    cdll *temp = start;
+    cdll *new_node = getnode();
+    while (temp->next != start)
+        temp = temp->next;
+    temp->next = new_node;
+    new_node->prev = temp;
+    new_node->next = start;
+    start->prev = new_node;
+    start = new_node;
+    return start;
+}
+
+cdll *insert_end(cdll *start)
+{
+    cdll *temp = start;
+    cdll *new_node = getnode();
+    while (temp->next != start)
+        temp = temp->next;
+    temp->next = new_node;
+    new_node->prev = temp;
+    new_node->next = start;
+    start->prev = new_node;
+    return start;
+}
+
+cdll *delete_beg(cdll *start)
+{
+    cdll *temp2;
+    cdll *temp = start;
+    while (temp->next != start)
+        temp = temp->next;
+    temp->next = start->next;
+    temp2 = start;
+    start = start->next;
+    start->prev = temp;
+    free(temp2);
+    return start;
+}
+
+cdll *delete_end(cdll *start)
+{
+    cdll *temp = start;
+    while (temp->next != start)
+        temp = temp->next;
+    temp->prev->next = start;
+    start->prev = temp->prev;
+    free(temp);
+    return start;
+}
+
+cdll *delete_node(cdll *start)
+{
+    int val;
+    cdll *temp = start;
+    printf("\nEnter the data of the node to be deleted : ");
+    scanf("%d", &val);
+    while (temp->data != val)
+        temp = temp->next;
+    temp->prev->next = temp->next;
+    temp->next->prev = temp->prev;
+    free(temp);
+    return start;
+}
+
+cdll *delete_list(cdll *start)
+{
+    cdll *temp = start;
+    while (temp->next != start)
+        start = delete_end(start);
+    free(start);
+    return start;
 }
 
 int main()
@@ -46,10 +160,11 @@ int main()
         switch (option)
         {
         case 1:
-            start = create_cll(start);
+            start = create(start);
             printf("\nCircular Doubly Linked List CREATED!");
             break;
         case 2:
+            printf("Linked List status : \n");
             start = display(start);
             break;
         case 3:
