@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
+// #include <conio.h>
 #include <stdlib.h>
 #define size 10
 int front = -1, rear = -1;
@@ -36,7 +36,7 @@ void display()
 }    }
 int main(){
     int ch;
-    clrscr();
+    // clrscr();
     while (1){
         printf("\n-----------------Queue Operations----------------\n");
         printf("1. Enqueue operation\n");
