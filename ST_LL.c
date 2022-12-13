@@ -25,28 +25,36 @@ void push(int value)
     printf("Node pushed successfully!\n");
 }
 
-int pop()
+void pop()
 {
     int i;
     if (top == NULL)
     {
-        printf("Stack Underflow!\n");
+        printf("\nStack Underflow!");
     }
     else
     {
         node *temp = top;
         i = top->data;
+        printf("\nPopped element : %d", i);
         top = top->next;
         free(temp);
-        return i;
     }
+}
+
+void peek()
+{
+    if (top != NULL)
+        printf("\nTop of Stack : %d\n", top->data);
+    else
+        printf("\nStack Underflow!");
 }
 
 void display()
 {
     if (top == NULL)
     {
-        printf("\nStack Underflow!\n");
+        printf("\nStack Underflow!");
     }
     else
     {
@@ -57,7 +65,7 @@ void display()
             printf("%d-->", temp->data);
             temp = temp->next;
         }
-        printf("NULL\n\n");
+        printf("NULL\n");
     }
 }
 
@@ -69,26 +77,28 @@ int main()
     while (1)
     {
         printf("\n--------------------------------------------");
-        printf("\n1. Push\n2. Pop\n3. Display\n4. Exit");
+        printf("\n1. Push\n2. Pop\n3. Peek\n4. Display\n5. Exit");
         printf("\n--------------------------------------------");
         printf("\nEnter your choice : ");
         scanf("%d", &choice);
         switch (choice)
         {
         case 1:
-            printf("\nEnter the value to insert: ");
+            printf("\nEnter the value to be pushed: ");
             scanf("%d", &value);
             push(value);
             break;
         case 2:
-            printf("Popped element : %d\n", pop());
+            pop();
             break;
         case 3:
-            display();
+            peek();
             break;
         case 4:
-            exit(0);
+            display();
             break;
+        case 5:
+            exit(0);
         default:
             printf("\nWrong Choice!\n");
         }
