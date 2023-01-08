@@ -6,6 +6,7 @@
 #define MAX 100
 char st[MAX];
 int top = -1;
+int flag = 0;
 
 int getP(char op)
 {
@@ -60,7 +61,8 @@ void InfixToPostfix(char src[], char tgt[])
             }
             if (top == -1)
             {
-                printf("\n Incorrect Expression");
+                printf("\n Error : Incorrect Expression\n");
+                flag++;
                 break;
             }
             temp = pop(st); // remove ')'
@@ -84,7 +86,8 @@ void InfixToPostfix(char src[], char tgt[])
         }
         else
         {
-            printf("\n Incorrect Element in Expression");
+            printf("\n Error : Incorrect Element in Expression\n");
+            flag++;
             break;
         }
     }
@@ -103,8 +106,14 @@ int main()
     gets(infix);
     strcpy(postfix, "");
     InfixToPostfix(infix, postfix);
-    printf("\n The corresponding postfix expression : ");
-    puts(postfix);
+    if (flag == 0)
+    {
+        printf("\n The corresponding postfix expression : %s", postfix);
+    }
+    else
+    {
+        printf("\n No valid postfix expression for the given expression!\n\n");
+    }
     return 0;
 }
 
