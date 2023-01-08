@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 
@@ -23,7 +24,7 @@ void push(char st[], char val)
         top++;
         st[top] = val;
     }
-} 
+}
 
 char pop(char st[])
 {
@@ -97,13 +98,13 @@ void InfixToPostfix(char src[], char tgt[])
 
 int main()
 {
-    char in[MAX], po[MAX];
+    char infix[MAX], postfix[MAX];
     printf("\n Enter the infix expression : ");
-    gets(in);
-    strcpy(po, "");
-    InfixToPostfix(in, po);
-    printf("\n The correspoding postfix expresion : ");
-    puts(po);
+    gets(infix);
+    strcpy(postfix, "");
+    InfixToPostfix(infix, postfix);
+    printf("\n The corresponding postfix expression : ");
+    puts(postfix);
     return 0;
 }
 
