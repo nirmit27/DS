@@ -1,5 +1,5 @@
 #include <stdio.h>
-// #include<conio.h>
+#include<conio.h>
 #include <ctype.h>
 #include <string.h>
 
@@ -61,8 +61,7 @@ void InfixToPostfix(char src[], char tgt[])
             if (top == -1)
             {
                 printf("\n Incorrect Expression");
-                // exit(1); 
-                break;
+                exit(1);
             }
             temp = pop(st); // remove ')'
             i++;
@@ -86,8 +85,7 @@ void InfixToPostfix(char src[], char tgt[])
         else
         {
             printf("\n Incorrect Element in Expression");
-            // exit(1);
-            break;
+            exit(1);
         }
     }
     while ((top != -1) && (st[top] != '('))
@@ -101,14 +99,14 @@ void InfixToPostfix(char src[], char tgt[])
 int main()
 {
     char in[MAX], po[MAX];
-    // clrscr();
+    clrscr();
     printf("\n Enter the infix expression : ");
     gets(in);
     strcpy(po, "");
     InfixToPostfix(in, po);
     printf("\n The correspoding postfix expresion : ");
     puts(po);
-    // getch();
+    getch();
     return 0;
 }
 
