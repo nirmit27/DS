@@ -65,7 +65,7 @@ void InfixToPostfix(char src[], char tgt[])
                 flag++;
                 break;
             }
-            temp = pop(st); // remove ')'
+            temp = pop(st); // remove '('
             i++;
         }
         else if (isdigit(src[i]) || isalpha(src[i]))
